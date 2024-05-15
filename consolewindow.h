@@ -26,6 +26,7 @@ class ConsoleWindow
 public:
     // explicit ConsoleWindow();
     // ~ConsoleWindow();
+    unsigned short lastLeftEncoder = 0, lastRightEncoder = 0;
     ConsoleWindow();
     ~ConsoleWindow();
     int processThisLidar(LaserMeasurement laserData);
@@ -42,6 +43,7 @@ private:
     Robot robot;
     TKobukiData robotdata;
     int datacounter;
+
 
     int sockfd;
     struct sockaddr_in servaddr;

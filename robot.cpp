@@ -178,7 +178,7 @@ void Robot::laserprocess()
     }
     else
     {
-        std::cout << "success with laser socket" << std::endl;
+        // std::cout << "success with laser socket" << std::endl;
     }
 
     char las_broadcastene = 1;
@@ -210,7 +210,7 @@ void Robot::laserprocess()
     }
     else
     {
-        std::cout << "success with sending empty message to laser socket" << std::endl;
+        // std::cout << "success with sending empty message to laser socket" << std::endl;
     }
     LaserMeasurement measure;
     while (1)
@@ -230,7 +230,7 @@ void Robot::laserprocess()
         }
         else
         {
-            std::cout << "success with receiving data from laser socket" << std::endl;
+            // std::cout << "success with receiving data from laser socket" << std::endl;
         }
         measure.numberOfScans = las_recv_len / sizeof(LaserData);
         // tu mame data..zavolame si funkciu-- vami definovany callback
