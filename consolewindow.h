@@ -10,6 +10,10 @@
 #include <string.h>
 #include <stdlib.h>
 #include <vector>
+#include <thread>
+#include <atomic>
+#include <chrono>
+
 // #include "ckobuki.h"
 // #include "rplidar.h"
 
@@ -33,6 +37,10 @@ public:
     int processThisRobot(TKobukiData robotdata);
     void start_robot_smile();
 
+    void startOdomThread();
+    void startMovementThread();
+    void stopThreads();
+
 private:
     //--skuste tu nic nevymazat... pridavajte co chcete, ale pri odoberani by sa mohol stat nejaky drobny problem, co bude vyhadzovat chyby
     Ui::ConsoleWindow *ui;
@@ -44,6 +52,11 @@ private:
     TKobukiData robotdata;
     int datacounter;
 
+    bool isMoving = true;
+
+    std::atomic<bool> running;
+    void odomThreadFunc();
+    void movementThreadFunc();
 
     int sockfd;
     struct sockaddr_in servaddr;
@@ -53,6 +66,9 @@ private:
 
     double forwardspeed;  // mm/s
     double rotationspeed; // omega/s
+
+    std::thread odomThread;
+    std::thread movementThread;
 };
 
 #endif
